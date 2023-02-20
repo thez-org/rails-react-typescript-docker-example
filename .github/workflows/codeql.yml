@@ -45,14 +45,14 @@ jobs:
     - if: matrix.language == 'javascript'
       name: Install Node.js dependencies
       run: "npm ci --ignore-scripts"
-      working-directory: './frontned' # The path to your project if its a monorepo
+      working-directory: './frontend' # The path to your project if its a monorepo
       #env:
       #  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # The NPM token to use for authentication
 
     - if: matrix.language == 'ruby'
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.x' # The version of Node.js to use
+        ruby-version: '3.0' # The version of Node.js to use
         bundler-cache: true # runs 'bundle install' and caches installed gems automaticall
 
     # Initializes the CodeQL tools for scanning.
