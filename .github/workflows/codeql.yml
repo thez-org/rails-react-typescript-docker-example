@@ -37,6 +37,7 @@ jobs:
     - if: matrix.language == 'javascript'
       uses: actions/setup-node@v3
       with:
+        working-directory: './frontend'
         node-version: 16 # The version of Node.js to use
         cache: 'npm'
         # cache-dependancy-path: '**/package-lock.json' # The path to package-lock.json file to find dependancies to cache
