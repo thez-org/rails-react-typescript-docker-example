@@ -45,7 +45,7 @@ jobs:
     - if: matrix.language == 'javascript'
       name: Install Node.js dependencies
       run: "npm ci --ignore-scripts"
-      working-directory: ./frontned # The path to your project if its a monorepo
+      working-directory: './frontned' # The path to your project if its a monorepo
       #env:
       #  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # The NPM token to use for authentication
 
