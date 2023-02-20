@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript', 'python' ]
+        language: [ 'javascript', 'ruby' ]
      
     steps:
     - name: Checkout repository
@@ -37,7 +37,6 @@ jobs:
     - if: matrix.language == 'javascript'
       uses: actions/setup-node@v3
       with:
-        working-directory: './frontend'
         node-version: 16 # The version of Node.js to use
         cache: 'npm'
         # cache-dependancy-path: '**/package-lock.json' # The path to package-lock.json file to find dependancies to cache
@@ -46,15 +45,15 @@ jobs:
     - if: matrix.language == 'javascript'
       name: Install Node.js dependencies
       run: "npm ci --ignore-scripts"
-      # working-directory: ./path/to/your/project # The path to your project if its a monorepo
+      working-directory: ./frontned # The path to your project if its a monorepo
       #env:
       #  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # The NPM token to use for authentication
 
     - if: matrix.language == 'ruby'
-      uses: ruby/setup-ruby@v1
+    - uses: ruby/setup-ruby@v1
       with:
-        #ruby-version: 2.7.4 # The version of Ruby to use
-        bundler-cache: true # Runs bundle install and caches installed gems automatically
+        ruby-version: '3.x' # The version of Node.js to use
+        bundler-cache: true # runs 'bundle install' and caches installed gems automaticall
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
