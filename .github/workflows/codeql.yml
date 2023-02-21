@@ -44,7 +44,7 @@ jobs:
 
     - if: matrix.language == 'javascript'
       name: Install Node.js dependencies
-      run: "yarn install --frozen-lockfile"
+      run: "yarn install --frozen-lockfile --ignore-scripts"
       working-directory: './frontend' # The path to your project if its a monorepo
       #env:
       #  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # The NPM token to use for authentication
