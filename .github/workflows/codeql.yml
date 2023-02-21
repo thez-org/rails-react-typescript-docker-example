@@ -39,7 +39,7 @@ jobs:
       with:
         node-version: 16 # The version of Node.js to use
         cache: 'npm'
-        # cache-dependancy-path: '**/package-lock.json' # The path to package-lock.json file to find dependancies to cache
+        cache-dependancy-path: '**/yarn.lock' # The path to package-lock.json file to find dependancies to cache
         # registry-url: 'https://registry.npmjs.org/' # The private registry to use for the Node.js packages
 
     - if: matrix.language == 'javascript'
