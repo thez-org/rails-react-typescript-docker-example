@@ -38,7 +38,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16 # The version of Node.js to use
-        cache: 'npm'
+        cache: 'yarn'
         cache-dependency-path: '**/yarn.lock' # The path to package-lock.json file to find dependancies to cache
         # registry-url: 'https://registry.npmjs.org/' # The private registry to use for the Node.js packages
 
