@@ -30,7 +30,7 @@ jobs:
     - name: Find Ruby version in Dockerfile
       id: find-ruby-version-in-dockerfile
       run: |
-        ruby_version=$(find . -name $FILE -exec sed -En 's/^FROM ruby:([0-9.]+)(.*)/\1/p' {} \; | head -1)
+        ruby_version=$(find . -name Dockerfile -exec sed -En 's/^FROM ruby:([0-9.]+)(.*)/\1/p' {} \; | head -1)
         if [ -z "$ruby_version" ]; then
           echo "No Dockerfile found, using default Ruby version"
           ruby_version="2.7"
