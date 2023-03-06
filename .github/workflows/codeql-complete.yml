@@ -44,7 +44,7 @@ jobs:
         ruby-version: ${{ steps.find-ruby-version-in-dockerfile.outputs.USE_RUBY_VERSION }} # The version of Ruby to use
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       env:
-        BUNDLE_GEMFILE = ./backend
+        BUNDLE_GEMFILE: ./backend/Gemfile
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
