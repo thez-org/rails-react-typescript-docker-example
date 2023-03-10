@@ -1,0 +1,56 @@
+name: "CodeQL - Complete analysis"
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # Set timeout to 30 minutes; Change if your project takes longer to scan
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript', 'ruby' ]
+     
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - if: matrix.language == 'javascript'
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16 # The version of Node.js to use
+        cache: 'npm'
+
+    - if: matrix.language == 'javascript'
+      name: Install Node.js dependencies
+      run: "npm ci --ignore-scripts"
+      # working-directory: ./path/to/your/project # The path to your project if its a monorepo
+      #env:
+      #  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # The NPM token to use for authentication
+
+
+    - if: matrix.language == 'ruby'
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2' # The version of Ruby to use
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
